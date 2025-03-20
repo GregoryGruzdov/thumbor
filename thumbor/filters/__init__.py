@@ -122,13 +122,12 @@ class FiltersRunner:
 
 
 class BaseFilter:
-    PositiveNumber = {"regex": r"[\d]+", "parse": int}
-    PositiveNonZeroNumber = {"regex": r"[\d]*[1-9][\d]*", "parse": int}
+    PositiveNumber = {"regex": r"\d+(?:\.\d+)?(?=,|\))", "parse": float}
+    PositiveNonZeroNumber = {"regex": r"[\d]*[1-9][\d]*(?:\.\d+)?(?=,|\))", "parse": float}
     NegativeNumber = {
-        "regex": f"[-]{PositiveNumber['regex']}",
-        "parse": int,
+        "regex": r"-\d+(?:\.\d+)?(?=,|\))", "parse": float,
     }
-    Number = {"regex": f"[-]?{PositiveNumber['regex']}", "parse": int}
+    Number = {"regex": r"-?\d+(?:\.\d+)?(?=,|\))", "parse": float}
     DecimalNumber = {
         "regex": r"[-]?(?:(?:[\d]+\.?[\d]*)|(?:[\d]*\.?[\d]+))",
         "parse": float,
