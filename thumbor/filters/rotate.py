@@ -13,7 +13,7 @@ from thumbor.filters import BaseFilter, filter_method
 from PIL import Image
 
 class Filter(BaseFilter):
-    @filter_method(BaseFilter.Number, BaseFilter.Boolean, BaseFilter.String)  # Angle, expand flag, and background color
+    @filter_method(BaseFilter.DecimalNumber, BaseFilter.Boolean, BaseFilter.String)  # Angle, expand flag, and background color
     async def rotate(self, angle, expand=False, bgcolor="white"):
         if not isinstance(angle, (int, float)):
             return
